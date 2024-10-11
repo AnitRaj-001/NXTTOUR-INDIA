@@ -1,6 +1,6 @@
 import 'package:nxtour/model/place_model.dart';
 
-import 'http_service.dart';
+import '../services/http_service.dart';
 
 class PlacesRepository {
   final ApiService apiService;

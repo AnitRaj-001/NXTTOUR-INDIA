@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import 'place_model.dart'; // Import the model
+import '../model/place_model.dart'; // Import the model
 
 class ApiService {
   final String baseUrl = 'https://nxttour.in/api/';

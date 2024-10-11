@@ -1,11 +1,8 @@
-import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:http/http.dart' as http;
-
-import '../model/Repository.dart';
-import '../model/http_service.dart';
+import '../resositorys/Repository.dart';
+import '../services/http_service.dart';
 import '../model/place_model.dart';
 
 class Homepage extends StatelessWidget {
@@ -15,14 +12,12 @@ class Homepage extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: ThemeData.dark().copyWith(
-        scaffoldBackgroundColor: const Color.fromARGB(255, 18, 32, 47),
-      ),
       home: Scaffold(
         backgroundColor: Colors.white,
         body: ListView(
           children: const [
             Header(),
+            Plans(),
             Places(),
           ],
         ),
@@ -30,7 +25,6 @@ class Homepage extends StatelessWidget {
     );
   }
 }
-
 class Header extends StatelessWidget {
   const Header({super.key});
 
@@ -42,7 +36,7 @@ class Header extends StatelessWidget {
           children: [
             Container(
               width: double.infinity,
-              height: MediaQuery.of(context).size.height * 0.37,
+              height: MediaQuery.of(context).size.height * 0.35,
               decoration: BoxDecoration(
                 image: const DecorationImage(
                   image: AssetImage('lib/assets/header_back.png'),
@@ -61,8 +55,8 @@ class Header extends StatelessWidget {
               ),
             ),
             Positioned(
-              top: 16,
-              left: 16,
+              top: 20,
+              left: 20,
               child: Image.asset(
                 'lib/assets/logo_nxt.png',
                 height: 28,
@@ -81,6 +75,7 @@ class Header extends StatelessWidget {
                         color: const Color.fromARGB(255, 50, 141, 137),
                       ),
                     ),
+                    const SizedBox(height: 10),
                     Text('Creating memories \n that last...',
                         textAlign: TextAlign.center,
                         style: GoogleFonts.urbanist(
@@ -93,37 +88,44 @@ class Header extends StatelessWidget {
             ),
           ],
         ),
-        Padding(
-          padding: const EdgeInsets.only(left: 5, top: 10.0),
-          // Add padding to the left and top
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                'Popular Packages',
-                style: GoogleFonts.seaweedScript(
-                  fontSize: 18,
-                  color: const Color.fromARGB(255, 50, 141, 137),
-                ),
-              ),
-              const SizedBox(height: 8), // Add some space between the texts if needed
-              Text(
-                'Featured Plans',
-                style: GoogleFonts.urbanist(
-                  fontSize: 30,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.black,
-                ),
-              ),
-            ],
-          ),
-        ),
+
       ],
     );
   }
 }
+class Plans extends StatelessWidget{
+  const Plans({super.key});
 
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(left: 20, top: 5.0),
+      // Add padding to the left and top
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            'Popular Packages',
+            style: GoogleFonts.seaweedScript(
+              fontSize: 18,
+              color: const Color.fromARGB(255, 50, 141, 137),
+            ),
+          ),
+          const SizedBox(height: 2), // Add some space between the texts if needed
+          Text(
+            'Featured Plans',
+            style: GoogleFonts.urbanist(
+              fontSize: 25,
+              fontWeight: FontWeight.bold,
+              color: Colors.black,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
 class Places extends StatelessWidget {
   const Places({super.key});
 
